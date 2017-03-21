@@ -4,13 +4,13 @@ var moment = require('moment');
 require('moment-range');
 
 @Component({
-    moduleId: module.id,
+    moduleId: 'module.id',
     selector: 'calendar',
     template: `
         <div class="col-md-12 text-center flush">
             <div class="col-md-2 flush">
                 <span class="col-md-12 flush clickable clickable-link" (click)="monthSelected(-1)">
-                    Prev
+                    <i class="fa fa-chevron-left glyphicon glyphicon-chevron-left"></i>
                 </span>
             </div>
             <span class="col-md-8 float-left text-center nudge-top">
@@ -18,7 +18,7 @@ require('moment-range');
             </span>
             <div class="col-md-2 flush">
                 <span class="col-md-12 pull-right flush clickable clickable-link" (click)="monthSelected(1)">
-                    Next
+                    <i class="fa fa-chevron-right glyphicon glyphicon-chevron-right"></i>
                 </span>
             </div>
         </div>

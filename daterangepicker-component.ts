@@ -6,7 +6,7 @@ import { Defaults } from './daterangepicker-default-ranges';
 import * as moment from 'moment';
 
 @Component({
-    moduleId: module.id,
+    moduleId: 'module.id',
     selector: 'date-range-picker',
     template: `
         <input class="{{class}}" type="text" [ngModel]="range">
@@ -34,9 +34,13 @@ import * as moment from 'moment';
             <div class="col-md-12 flush text-center ranges">
                 <button [class.hidden]="options.autoApply" class="btn btn-success btn-sm" [disabled]="!enableApplyButton" (click)="apply()">Apply</button>
                 <button [class.hidden]="options.autoApply" class="btn btn-default btn-sm" (click)="cancel()">Cancel</button>
+			
+				
                 <div class="col-md-12 flush text-center">
                     <button *ngFor="let range of defaultRanges" class="btn btn-link" (click)="applyPredefinedRange(range)">{{range.name}}</button>
+					<button class="btn btn-link" id="btn_all" (click)="allRecord()">All</button>
                 </div>
+				
             </div>
         </div>
     `
@@ -210,6 +214,10 @@ export class DaterangepickerComponent implements OnInit {
     setRange() {
         this.range = this.fromDate.format(this.format) + " - " + this.toDate.format(this.format);
     }
+	
+	setRangeForAllRecord() {
+        this.range = moment("01/01/2010") + " - " + moment();
+    }
     formatFromDate(event) {
         if (event.target.value !== this.fromDate.format(this.format)) {
             this.dateChanged({
@@ -258,6 +266,12 @@ export class DaterangepickerComponent implements OnInit {
         this.restoreOldDates();
         this.toggleCalendars(false);
     }
+	allRecord(){
+		
+		this.toggleCalendars(false);
+      
+       
+	}
     applyPredefinedRange(data) {
         this.setFromDate(data.value.start);
         this.setToDate(data.value.end);
